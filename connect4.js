@@ -24,7 +24,7 @@ const board = []; // array of rows, each row is array of cells  (board[y][x])
 
 function makeBoard() {
   for (let y = 0; y < HEIGHT; y++) { // Loop through the array staring at 0 and ending at 5(vertical)
-    board.push(Array.from({ length: WIDTH })); // Pushes to the 
+    board.push(Array.from({ length: WIDTH })); // Pushes to the board, our empty array.
   }
 }
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
@@ -45,7 +45,7 @@ function makeHtmlBoard() {
 
   for (let x = 0; x < WIDTH; x++) { // for loop that iterates through WIDTH and stops at 6(runs horizontal)
     const headCell = document.createElement("td"); // creates idividual content cells 
-    headCell.setAttribute("connect-id", x); // set attribute for x 
+    headCell.setAttribute("connect-id", x); // sets attribute for x 
     top.append(headCell); // appends new element to the top of the const headCell
   }
   htmlBoard.append(top); // appends to top of the board where we drop our pieces in.
