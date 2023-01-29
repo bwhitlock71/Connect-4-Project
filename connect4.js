@@ -11,7 +11,7 @@
 const WIDTH = 7;
 const HEIGHT = 6;
 
-// MY COMMENTS //
+
 
 let currPlayer = 1 || 2; // active player: 1 or 2
 const board = []; // array of rows, each row is array of cells  (board[y][x])
@@ -20,11 +20,11 @@ const board = []; // array of rows, each row is array of cells  (board[y][x])
  *    board = array of rows, each row is array of cells  (board[y][x])
  */
 
-//MY COMMENTS//
+
 
 function makeBoard() {
-  for (let y = 0; y < HEIGHT; y++) { // Loop through the array staring at 0 and ending at 5
-    board.push(Array.from({ length: WIDTH })); //Is this pulling the const = board ouside of the function?
+  for (let y = 0; y < HEIGHT; y++) { // Loop through the array staring at 0 and ending at 5(vertical)
+    board.push(Array.from({ length: WIDTH })); // Pushes to the 
   }
 }
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
@@ -32,35 +32,34 @@ function makeBoard() {
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
-// MY COMMENTS //
+
 
 
 function makeHtmlBoard() {
   const htmlBoard = document.getElementById('board'); // Selects the table with the id="board"
   // TODO: get "htmlBoard" variable from the item in HTML w/ID of "board"
 
-  // MY COMMENTS //
   const top = document.createElement("tr"); // Creates a new table row 
   top.setAttribute("id", "column-top"); // The new table row with the id of column top
   top.addEventListener("click", handleClick); // Adds an event listener for clicking on any column at the top  
 
   for (let x = 0; x < WIDTH; x++) { // for loop that iterates through WIDTH and stops at 6(runs horizontal)
     const headCell = document.createElement("td"); // creates idividual content cells 
-    headCell.setAttribute("id", x); //  ??
+    headCell.setAttribute("connect-id", x); // set attribute for x 
     top.append(headCell); // appends new element to the top of the const headCell
   }
-  htmlBoard.append(top); // appends to top
+  htmlBoard.append(top); // appends to top of the board where we drop our pieces in.
 
-  // END OF MY COMMENTS CURRENTLY //
+
 
 
 
   // TODO: add comment for this code
   for (let y = 0; y < HEIGHT; y++) { // for loop that iterates through HEIGHT and stops at 5(runs vertical) 
     const row = document.createElement("tr"); // creates new individual rows for HEIGHT
-    for (let x = 0; x < WIDTH; x++) {
-      const cell = document.createElement("td");
-      cell.setAttribute("id", `${y}-${x}`);
+    for (let x = 0; x < WIDTH; x++) { // Loops through the const = WIDTH and stops at 6
+      const cell = document.createElement("td"); // creates new individual content cells
+      cell.setAttribute("id", `${y}-${x}`); // sets the cell with an id `
       row.append(cell);
     }
     htmlBoard.append(row);
@@ -153,12 +152,12 @@ function checkForWin() {
 
   // TODO: read and understand this code. Add comments to help you.
 
-  for (let y = 0; y < HEIGHT; y++) {
-    for (let x = 0; x < WIDTH; x++) {
-      const horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
-      const vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
-      const diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
-      const diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
+  for (let y = 0; y < HEIGHT; y++) { // Loops through the HEIGHT
+    for (let x = 0; x < WIDTH; x++) { // Loops through the WIDTH
+      const horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]]; // Horizontal direction of the board
+      const vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]]; // Vertical direction of the board
+      const diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]]; // Diagnal direction to the right of the board, the higher the number is the further to the right it will be.
+      const diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]]; // Diagnal direction to the left of the board, we use a minus sign to move from right to left on the board.
 
       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
         return true;
